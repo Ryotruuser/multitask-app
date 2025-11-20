@@ -1,0 +1,12 @@
+.heading {
+    background: #2e302a;
+    color: #fff;
+    text-align: center;
+    padding: 6.2rem 0;
+    font-size: 3.4rem;
+    text-transform: uppercase;
+    letter-spacing: .2rem;
+    border-radius: 0 0 .8rem .8rem;
+    -webkit-box-shadow: 2px 1px 15px -1px #000000; 
+    box-shadow: 2px 1px 15px -1px #000000;
+}
