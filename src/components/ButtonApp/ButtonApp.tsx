@@ -5,6 +5,9 @@ type ButtonAppProps = {
 } & React.ComponentProps<'img'>;
 export default function ButtonApp(props: ButtonAppProps){
     return (
-        <img {...props} className={styles.buttonApp}/>
+        <a className={styles.buttonAppLink} href='!#'>
+            <img {...props} className={styles.buttonAppimg}/>
+        </a>
+        
     )
 }
