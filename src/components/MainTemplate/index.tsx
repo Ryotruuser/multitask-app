@@ -3,6 +3,8 @@ import BodyApp from "../BodyApp/BodyApp";
 import Heading from "../Heading/Heading";
 import { ArrowLeft } from "lucide-react";
 
+import "./styles.css";
+
 type MainTemplateProps = {
   children: React.ReactNode;
 };
@@ -24,14 +26,28 @@ export function MainTemplate({ children }: MainTemplateProps) {
     }
   }
 
+  function whatPageisThis() {
+    if (url.includes("Calc")) {
+      return "Calculadora";
+    } else if (url.includes("Cambio")) {
+      return "Conversor";
+    } else if (url.includes("Tasks")) {
+      return "Tarefas";
+    } else if (url.includes("Timer")) {
+      return "Cronômetro";
+    }
+  }
+
   return (
     <>
       <Heading>
         {isThisHome() ? (
-          <Link to={home}>multitask app</Link>
+          <Link to={home}>
+            <span>multitask</span> app
+          </Link>
         ) : (
           <Link to={home}>
-            <ArrowLeft /> Voltar a home
+            <ArrowLeft /> {whatPageisThis()}
           </Link>
         )}
       </Heading>
