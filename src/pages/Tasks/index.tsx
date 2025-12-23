@@ -1,7 +1,9 @@
+import { MainTemplate } from "../../components/MainTemplate";
+
 export function Tasks() {
   return (
-    <div>
+    <MainTemplate>
       <h1>Tasks</h1>
-    </div>
+    </MainTemplate>
   );
 }

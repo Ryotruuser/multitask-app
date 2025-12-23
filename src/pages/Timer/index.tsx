@@ -1,7 +1,9 @@
+import { MainTemplate } from "../../components/MainTemplate";
+
 export function Timer() {
   return (
-    <div>
-      <h1>Timers</h1>
-    </div>
+    <MainTemplate>
+      <h1>Timer</h1>
+    </MainTemplate>
   );
 }

@@ -1,7 +1,9 @@
+import { MainTemplate } from "../../components/MainTemplate";
+
 export function Calc() {
   return (
-    <div>
-      <h1>Calc</h1>
-    </div>
+    <MainTemplate>
+      <h1>Calculadora</h1>
+    </MainTemplate>
   );
 }

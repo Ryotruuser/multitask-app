@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import BodyApp from "../BodyApp/BodyApp";
 import Heading from "../Heading/Heading";
 
@@ -8,7 +9,10 @@ type MainTemplateProps = {
 export function MainTemplate({ children }: MainTemplateProps) {
   return (
     <>
-      <Heading>Multitask APP</Heading>
+      <Heading>
+        <Link to={"/"}>multitask app</Link>
+      </Heading>
+
       <BodyApp>{children}</BodyApp>
     </>
   );

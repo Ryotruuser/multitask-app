@@ -1,7 +1,9 @@
+import { MainTemplate } from "../../components/MainTemplate";
+
 export function Cambio() {
   return (
-    <div>
+    <MainTemplate>
       <h1>Cambio</h1>
-    </div>
+    </MainTemplate>
   );
 }
