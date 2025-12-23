@@ -1,0 +1,7 @@
+.imgApp:hover {
+  scale: 1.1;
+}
+
+.imgApp {
+  transition: ease-in-out 0.3s;
+}
