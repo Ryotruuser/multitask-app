@@ -1,6 +1,5 @@
+import { MainTemplate } from "../../components/MainTemplate";
 import styles from "./styles.module.css";
-
-import { MainTemplate } from "../template/MainTemplate";
 
 export function NotFound() {
   return (
