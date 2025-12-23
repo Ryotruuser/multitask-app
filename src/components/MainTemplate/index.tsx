@@ -24,17 +24,13 @@ export function MainTemplate({ children }: MainTemplateProps) {
     }
   }
 
-  const styleOutHome = {
-    fontSize: 32,
-  };
-
   return (
     <>
       <Heading>
         {isThisHome() ? (
           <Link to={home}>multitask app</Link>
         ) : (
-          <Link to={home} style={styleOutHome}>
+          <Link to={home}>
             <ArrowLeft /> Voltar a home
           </Link>
         )}
