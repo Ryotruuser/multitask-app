@@ -68,3 +68,9 @@ span {
   width: 20px;
   height: 20px;
 }
+
+.noTaskAdded {
+  font-family: "Tangerine", cursive;
+  font-size: 3rem;
+  margin-top: 50%;
+}

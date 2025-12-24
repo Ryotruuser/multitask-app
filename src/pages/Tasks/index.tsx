@@ -152,6 +152,9 @@ export function Tasks() {
             onClick={addTask}
           />
         </div>
+        {tasks.length === 0 ? (
+          <h4 className="noTaskAdded">Você não possui tarefas</h4>
+        ) : null}
 
         {tasks &&
           tasks.map((item) => (

@@ -14,10 +14,18 @@
   gap: 0.5rem;
 }
 
+.coinChange:hover {
+  background-color: rgba(43, 98, 121, 1);
+}
+
 .inputSection {
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+.inputSection:hover {
+  background-color: rgba(43, 98, 121, 0.78);
 }
 
 .realCambio,
@@ -37,12 +45,12 @@
 }
 
 .cambioText h4 {
-  font-size: 1.5rem;
+  font-size: 2rem;
 }
 
 .cambioText img {
-  width: 50px;
-  height: 50px;
+  width: 45px;
+  height: 45px;
 }
 
 .middleArrow {
@@ -73,6 +81,7 @@
   border-radius: 11px;
   font-weight: 600;
   padding-right: 0.5rem;
+  cursor: pointer;
 }
 
 .coinInfos {
