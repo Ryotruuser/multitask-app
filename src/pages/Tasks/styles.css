@@ -1,0 +1,70 @@
+.container {
+  max-width: 90%;
+}
+
+.taskInputSection {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.taskAddContainer {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.xOfTheQuestion {
+  position: absolute;
+  right: 10px;
+  cursor: pointer;
+}
+.xOfTheQuestion img {
+  width: 20px;
+}
+
+.taskName {
+  width: 280px;
+  height: 52px;
+  font-size: 2.2rem;
+  border: none;
+  outline: none;
+  padding-left: 2rem;
+  background-color: rgba(171, 197, 203, 0.69);
+  border-radius: 14px;
+}
+
+.btnAddTask {
+  width: 60px;
+  cursor: pointer;
+  padding-bottom: 0.5rem;
+}
+
+.taskContainer {
+  margin: 0.5rem 0;
+  display: flex;
+  width: 100vw;
+  padding: 0.5rem 1rem;
+  border-bottom: 1px solid rgba(224, 255, 255, 0.5);
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.taskTitle {
+  font-size: 2rem;
+}
+
+span {
+  padding: 0.4rem;
+}
+
+.taskEdit,
+.taskDelete {
+  width: 20px;
+  cursor: pointer;
+}
+
+.taskComplete input {
+  width: 20px;
+  height: 20px;
+}
