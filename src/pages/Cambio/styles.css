@@ -1,0 +1,116 @@
+.container {
+  max-width: 90%;
+  font-family: "KoHo", sans-serif;
+}
+
+.coinChange {
+  width: 350px;
+  height: 119px;
+  padding: 15px 10px;
+  background-color: rgba(43, 98, 121, 0.78);
+  border-radius: 22px;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.inputSection {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.realCambio,
+.dolarCambio {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.cambioText {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  gap: 0.5rem;
+}
+
+.cambioText h4 {
+  font-size: 1.5rem;
+}
+
+.cambioText img {
+  width: 50px;
+  height: 50px;
+}
+
+.middleArrow {
+  width: 100px;
+  height: 50px;
+}
+
+.inputPart {
+  position: relative;
+}
+
+.inputPart span {
+  position: absolute;
+  font-size: 1.8rem;
+  color: #fff;
+  font-weight: 800;
+}
+
+.inputPart input {
+  width: 110px;
+  height: 30px;
+  font-size: 1.6rem;
+  text-align: right;
+  background-color: rgb(8, 9, 8, 0.4);
+  border: none;
+  outline: none;
+  color: #1dc861;
+  border-radius: 11px;
+  font-weight: 600;
+  padding-right: 0.5rem;
+}
+
+.coinInfos {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.coinText {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  color: #fff;
+}
+
+.coinText h3 {
+  font-size: 24px;
+  letter-spacing: 0.3rem;
+}
+
+.coinText p {
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.3rem;
+}
+
+.countryFlag {
+  width: 81px;
+  height: 81px;
+}
+
+.currencyCambio span {
+  color: #fff;
+}
+
+.currencyCambio {
+  font-size: 24px;
+  color: #1dc861;
+  font-weight: 800;
+}
