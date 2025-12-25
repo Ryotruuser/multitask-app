@@ -31,6 +31,7 @@
 .timerActions {
   display: flex;
   gap: 0.5rem;
+  transition: ease-in-out 0.3s;
 }
 
 .playOrPauseBtn {
@@ -38,14 +39,13 @@
   outline: none;
   padding: 0.5rem 1rem;
   border-radius: 4px;
-  background-color: rgba(0, 128, 0, 0.89);
   cursor: pointer;
+  transition: ease-in-out 0.2s;
 }
 
 .playOrPauseBtn:hover {
-  background-color: rgba(0, 128, 0, 1);
+  transform: scale(1.1);
 }
-
 .setTimerValues {
   display: flex;
   flex-direction: column;
@@ -74,13 +74,14 @@
   outline: none;
   padding: 0.5rem 1rem;
   border-radius: 4px;
-  background-color: rgba(255, 0, 0, 0.89);
+  background-color: #bf0000;
   opacity: 0.2;
   cursor: pointer;
+  transition: ease-in-out 0.2s;
 }
 
 .stopBtn:hover {
-  background-color: rgba(255, 0, 0, 1);
+  transform: scale(1.1);
 }
 
 .iconInsideTheButton {

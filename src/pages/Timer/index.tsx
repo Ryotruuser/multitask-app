@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { MainTemplate } from "../../components/MainTemplate";
 
 import "./styles.css";
-import { Play, Square } from "lucide-react";
+import { Pause, Play, Square } from "lucide-react";
 
 export function Timer() {
   interface timer {
@@ -47,7 +47,21 @@ export function Timer() {
   }
 
   function handleTimer() {
+    if (timer && timer.isPaused) {
+      setTimer((prevTimer) => {
+        if (!prevTimer) return prevTimer;
+
+        return {
+          ...prevTimer,
+          isPaused: false,
+        };
+      });
+    }
+
     const allTimeInSeconds = putAllMyTimeTogether();
+    if (!doIhaveTime()) {
+      return;
+    }
     console.log(typeof allTimeInSeconds);
     setTimer({
       allTimeInSeconds: allTimeInSeconds,
@@ -66,7 +80,7 @@ export function Timer() {
   }
 
   useEffect(() => {
-    if (!timer?.isRunning || timer.isPaused) {
+    if (!timer || timer.isPaused) {
       return;
     }
 
@@ -89,7 +103,7 @@ export function Timer() {
     }, 1000);
 
     return () => clearInterval(interval);
-  }, [timer?.isRunning, timer?.isPaused]);
+  }, [timer, timer?.isRunning, timer?.isPaused]);
 
   function formatTimer(timerUnit: string = "") {
     const doWeHaveAnyTime = doIhaveTime();
@@ -122,6 +136,47 @@ export function Timer() {
 
     return "00";
   }
+
+  function handleStopTimer() {
+    setTimer((prevTimer) => {
+      if (!prevTimer) return prevTimer;
+      return {
+        allTimeInSeconds: 0,
+        actualTimeInSeconds: 0,
+        isRunning: false,
+        isPaused: false,
+      };
+    });
+  }
+
+  function handlePause() {
+    setTimer((prevTimer) => {
+      if (!prevTimer) return prevTimer;
+
+      return {
+        ...prevTimer,
+        isPaused: true,
+      };
+    });
+
+    console.log(timer);
+  }
+
+  const pauseBtn = {
+    backgroundColor: "red",
+  };
+
+  const playBtn = {
+    backgroundColor: "rgba(0, 128, 0, 0.89)",
+  };
+
+  const stopBtnRunning = {
+    opacity: "1",
+  };
+
+  const stopBtnStopped = {
+    opacity: "0.2",
+  };
 
   return (
     <MainTemplate>
@@ -215,11 +270,29 @@ export function Timer() {
         </section>
 
         <section className="timerActions">
-          <button onClick={handleTimer} className="playOrPauseBtn">
-            <Play className="iconInsideTheButton" />
-          </button>
+          {!timer?.isRunning || timer.isPaused ? (
+            <button
+              onClick={handleTimer}
+              className="playOrPauseBtn"
+              style={playBtn}
+            >
+              <Play className="iconInsideTheButton" />
+            </button>
+          ) : (
+            <button
+              onClick={handlePause}
+              className="playOrPauseBtn"
+              style={pauseBtn}
+            >
+              <Pause className="iconInsideTheButton" />
+            </button>
+          )}
 
-          <button onClick={handleTimer} className="stopBtn">
+          <button
+            onClick={handleStopTimer}
+            className="stopBtn"
+            style={timer?.isRunning ? stopBtnRunning : stopBtnStopped}
+          >
             <Square className="iconInsideTheButton" />
           </button>
         </section>
