@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { MainTemplate } from "../../components/MainTemplate";
 
 import "./styles.css";
@@ -9,6 +9,7 @@ export function Timer() {
     allTimeInSeconds: number;
     actualTimeInSeconds: number;
     isPaused: boolean;
+    isRunning: boolean;
   }
 
   interface selectedTimer {
@@ -50,23 +51,70 @@ export function Timer() {
     console.log(typeof allTimeInSeconds);
     setTimer({
       allTimeInSeconds: allTimeInSeconds,
-      actualTimeInSeconds: 0,
+      actualTimeInSeconds: allTimeInSeconds,
       isPaused: false,
+      isRunning: true,
+    });
+
+    setSelectedTimer({
+      hoursSelected: 0,
+      minutesSelected: 0,
+      secondsSelected: 0,
     });
 
     console.log(timer);
   }
 
-  function formatTimer(timerNameType: string) {
+  useEffect(() => {
+    if (!timer?.isRunning || timer.isPaused) {
+      return;
+    }
+
+    const interval = setInterval(() => {
+      setTimer((prevTimer) => {
+        if (!prevTimer) return prevTimer;
+        if (prevTimer.actualTimeInSeconds <= 1) {
+          return {
+            ...prevTimer,
+            actualTimeInSeconds: 0,
+            isRunning: false,
+          };
+        }
+
+        return {
+          ...prevTimer,
+          actualTimeInSeconds: prevTimer.actualTimeInSeconds - 1,
+        };
+      });
+    }, 1000);
+
+    return () => clearInterval(interval);
+  }, [timer?.isRunning, timer?.isPaused]);
+
+  function formatTimer(timerUnit: string = "") {
     const doWeHaveAnyTime = doIhaveTime();
+
+    if (timer?.isRunning) {
+      if (timerUnit == "tHours") {
+        const newHours = Math.floor(timer?.actualTimeInSeconds / 3600);
+        return String(newHours).padStart(2, "0");
+      } else if (timerUnit === "tMinutes") {
+        const newMinutes = Math.floor((timer.actualTimeInSeconds % 3600) / 60);
+        return String(newMinutes).padStart(2, "0");
+      } else if (timerUnit === "tSeconds") {
+        const newSeconds = Math.floor(timer.actualTimeInSeconds % 60);
+        return String(newSeconds).padStart(2, "0");
+      }
+    }
+
     if (doWeHaveAnyTime) {
-      if (timerNameType == "hours") {
+      if (timerUnit == "sHours") {
         const newHours = selectedTimer?.hoursSelected;
         return String(newHours).padStart(2, "0");
-      } else if (timerNameType == "minutes") {
+      } else if (timerUnit == "sMinutes") {
         const newMinutes = selectedTimer?.minutesSelected;
         return String(newMinutes).padStart(2, "0");
-      } else if (timerNameType == "seconds") {
+      } else if (timerUnit == "sSeconds") {
         const newSeconds = selectedTimer?.secondsSelected;
         return String(newSeconds).padStart(2, "0");
       }
@@ -79,11 +127,23 @@ export function Timer() {
     <MainTemplate>
       <div className="container">
         <section className="timer">
-          <span className="hours">{formatTimer("hours")}</span>
+          <span className="hours">
+            {timer?.isRunning ? formatTimer("tHours") : formatTimer("sHours")}
+          </span>
           <span className="separator">:</span>
-          <span className="minutes">{formatTimer("minutes")}</span>
+          <span className="minutes">
+            {" "}
+            {timer?.isRunning
+              ? formatTimer("tMinutes")
+              : formatTimer("sMinutes")}
+          </span>
           <span className="separatorSmall">:</span>
-          <span className="seconds">{formatTimer("seconds")}</span>
+          <span className="seconds">
+            {" "}
+            {timer?.isRunning
+              ? formatTimer("tSeconds")
+              : formatTimer("sSeconds")}
+          </span>
         </section>
 
         <section className="setTimerValues">
