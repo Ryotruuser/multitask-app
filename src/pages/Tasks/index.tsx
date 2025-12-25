@@ -1,6 +1,6 @@
 import { FilePenLine, Trash } from "lucide-react";
 import { MainTemplate } from "../../components/MainTemplate";
-import "./styles.css";
+import styles from "./styles.module.css";
 import { useEffect, useRef, useState } from "react";
 
 export function Tasks() {
@@ -128,12 +128,12 @@ export function Tasks() {
 
   return (
     <MainTemplate>
-      <div className="container">
-        <div className="taskInputSection">
-          <div className="taskAddContainer">
+      <div className={styles.container}>
+        <div className={styles.taskInputSection}>
+          <div className={styles.taskAddContainer}>
             <input
               type="text"
-              className="taskName"
+              className={styles.taskName}
               placeholder="nome da tarefa..."
               maxLength={20}
               value={input}
@@ -141,26 +141,26 @@ export function Tasks() {
               required
               ref={inputRef}
             />
-            <span className="xOfTheQuestion">
+            <span className={styles.xOfTheQuestion}>
               <img onClick={clearInput} src="./x.png" alt="icone de um x" />
             </span>
           </div>
           <img
             src="./AddTask.png"
             alt="icone de adicionar tarefa"
-            className="btnAddTask"
+            className={styles.btnAddTask}
             onClick={addTask}
           />
         </div>
         {tasks.length === 0 ? (
-          <h4 className="noTaskAdded">Você não possui tarefas</h4>
+          <h4 className={styles.noTaskAdded}>Você não possui tarefas</h4>
         ) : null}
 
         {tasks &&
           tasks.map((item) => (
-            <section key={item.texto} className="tasksSection">
-              <div className="taskContainer">
-                <span className="taskComplete">
+            <section key={item.texto} className={styles.tasksSection}>
+              <div className={styles.taskContainer}>
+                <span className={styles.taskComplete}>
                   <input
                     type="checkbox"
                     onChange={(e) => {
@@ -170,7 +170,7 @@ export function Tasks() {
                   />
                 </span>
                 <h4
-                  className="taskTitle"
+                  className={styles.taskTitle}
                   style={
                     item.completa === true
                       ? completedTasksStyle
@@ -180,10 +180,10 @@ export function Tasks() {
                   {item.texto}
                 </h4>
                 <span onClick={() => handleEditTask(item)}>
-                  <FilePenLine className="taskEdit" />
+                  <FilePenLine className={styles.taskEdit} />
                 </span>
                 <span onClick={() => handleDeleteTask(item.texto)}>
-                  <Trash className="taskDelete" />
+                  <Trash className={styles.taskDelete} />
                 </span>
               </div>
             </section>

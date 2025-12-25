@@ -1,4 +1,8 @@
 .container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
   max-width: 90%;
 }
 
@@ -6,6 +10,7 @@
   display: flex;
   gap: 0.5rem;
   align-items: center;
+  margin-bottom: 1rem;
 }
 
 .taskAddContainer {
@@ -43,11 +48,20 @@
 .taskContainer {
   margin: 0.5rem 0;
   display: flex;
-  width: 100vw;
-  padding: 0.5rem 1rem;
+  width: 345px;
+  padding: 2rem 1rem;
   border-bottom: 1px solid rgba(224, 255, 255, 0.5);
+  background-color: rgba(65, 152, 115, 0.1);
   gap: 0.5rem;
   align-items: center;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: ease-in 0.2s;
+}
+
+.taskContainer:hover {
+  background-color: rgba(65, 152, 115, 1);
+  color: #fff;
 }
 
 .taskTitle {
@@ -72,5 +86,5 @@ span {
 .noTaskAdded {
   font-family: "Tangerine", cursive;
   font-size: 3rem;
-  margin-top: 50%;
+  margin-top: 10rem;
 }
