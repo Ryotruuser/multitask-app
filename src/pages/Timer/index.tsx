@@ -50,11 +50,11 @@ export function Timer() {
             className="setTimerHours"
             min={0}
             max={720}
-            step={0.01}
+            step={0.1}
             onChange={(e) =>
               setTimer({
                 tempoTotal: parseFloat(e.target.value) * 60,
-                tempoAtual: 0,
+                tempoAtual: parseFloat(e.target.value) * 60,
                 isPaused: false,
               })
             }
