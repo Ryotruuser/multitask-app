@@ -5,20 +5,43 @@ import "./styles.css";
 import { Play, Square } from "lucide-react";
 
 export function Timer() {
-  const [input, setInput] = useState(0);
+  interface timer {
+    tempoTotal: number;
+    tempoAtual: number;
+    isPaused: boolean;
+  }
+  const [timer, setTimer] = useState<timer>();
 
   function handleTimer() {
-    console.log(input);
+    console.log(timer);
   }
+
+  function formatTimer(timerNameType: string) {
+    if (timer?.tempoTotal) {
+      if (timerNameType == "hours") {
+        const newHours = Math.floor(timer?.tempoTotal / 3600);
+        return String(newHours).padStart(2, "0");
+      } else if (timerNameType == "minutes") {
+        const newMinutes = Math.floor((timer?.tempoTotal % 3600) / 60);
+        return String(newMinutes).padStart(2, "0");
+      } else if (timerNameType == "seconds") {
+        const newSeconds = Math.floor(timer?.tempoTotal % 60);
+        return String(newSeconds).padStart(2, "0");
+      }
+    }
+
+    return "00";
+  }
+
   return (
     <MainTemplate>
       <div className="container">
         <section className="timer">
-          <span className="hours">09</span>
+          <span className="hours">{formatTimer("hours")}</span>
           <span className="separator">:</span>
-          <span className="minutes">59</span>
+          <span className="minutes">{formatTimer("minutes")}</span>
           <span className="separatorSmall">:</span>
-          <span className="seconds">58</span>
+          <span className="seconds">{formatTimer("seconds")}</span>
         </section>
 
         <section className="setTimerValues">
@@ -26,9 +49,15 @@ export function Timer() {
             type="range"
             className="setTimerHours"
             min={0}
-            max={100}
-            value={input}
-            onChange={(e) => setInput(parseInt(e.target.value))}
+            max={720}
+            step={0.01}
+            onChange={(e) =>
+              setTimer({
+                tempoTotal: parseFloat(e.target.value) * 60,
+                tempoAtual: 0,
+                isPaused: false,
+              })
+            }
           />
         </section>
 

@@ -46,6 +46,10 @@
   background-color: rgba(0, 128, 0, 1);
 }
 
+.setTimerHours {
+  width: 90vw;
+}
+
 .stopBtn {
   border: none;
   outline: none;
