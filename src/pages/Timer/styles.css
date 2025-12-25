@@ -1,0 +1,65 @@
+.container {
+  max-width: 90%;
+  display: flex;
+  align-items: center;
+  flex-direction: center;
+}
+
+.timer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.separator {
+  font-size: 7rem;
+}
+
+.separatorSmall {
+  font-size: 2rem;
+}
+
+.hours,
+.minutes {
+  font-size: 9rem;
+}
+
+.seconds {
+  font-size: 3rem;
+}
+
+.timerActions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.playOrPauseBtn {
+  border: none;
+  outline: none;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  background-color: rgba(0, 128, 0, 0.89);
+  cursor: pointer;
+}
+
+.playOrPauseBtn:hover {
+  background-color: rgba(0, 128, 0, 1);
+}
+
+.stopBtn {
+  border: none;
+  outline: none;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  background-color: rgba(255, 0, 0, 0.89);
+  opacity: 0.2;
+  cursor: pointer;
+}
+
+.stopBtn:hover {
+  background-color: rgba(255, 0, 0, 1);
+}
+
+.iconInsideTheButton {
+  color: #fff;
+}

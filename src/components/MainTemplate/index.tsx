@@ -34,7 +34,7 @@ export function MainTemplate({ children }: MainTemplateProps) {
     } else if (url.includes("Tasks")) {
       return "Tarefas";
     } else if (url.includes("Timer")) {
-      return "Cronômetro";
+      return "Temporizador";
     }
   }
 
