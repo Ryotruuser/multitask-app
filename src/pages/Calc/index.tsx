@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { MainTemplate } from "../../components/MainTemplate";
 import { evaluate } from "mathjs";
 import "./styles.css";
+import { Delete } from "lucide-react";
 
 export function Calc() {
   const [value, setValue] = useState<string[]>([]);
@@ -21,6 +22,10 @@ export function Calc() {
     const expression = value.map((v) => (v === "X" ? "*" : v)).join("");
     const result = evaluate(expression);
     setValue([String(result)]);
+  }
+
+  function handleDelete() {
+    setValue((v) => v.slice(0, -1));
   }
 
   function handleClear() {
@@ -58,12 +63,8 @@ export function Calc() {
             >
               9
             </button>
-            <button
-              className="operationButtons"
-              value={"%"}
-              onClick={(e) => handleBtnValues(e)}
-            >
-              %
+            <button className="deleteBtn" value={"%"} onClick={handleDelete}>
+              <Delete className="icon" />
             </button>
           </section>
 

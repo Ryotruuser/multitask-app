@@ -13,10 +13,12 @@
   border-radius: 1rem;
   outline: none;
   border: none;
-  background-color: rgba(236, 56, 56, 0.46);
+  background-color: rgba(77, 53, 53, 0.6);
+  color: #fff;
   font-size: 4rem;
   text-align: right;
   padding-right: 1rem;
+  letter-spacing: 0.3rem;
 }
 
 .numbers {
@@ -67,6 +69,29 @@
 .zeroButton {
   width: 269px;
   height: 71px;
+}
+
+.deleteBtn {
+  border-radius: 8px;
+  cursor: pointer;
+  border: none;
+  outline: none;
+  width: 62.39px;
+  height: 71px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(165, 0, 0, 0.3);
+  color: #fff;
+}
+
+.deleteBtn:hover {
+  background-color: rgba(165, 0, 0, 1);
+}
+
+.deleteBtn .icon {
+  width: 40px;
+  height: 40px;
 }
 
 .resultButton {
