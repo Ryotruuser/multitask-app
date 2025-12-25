@@ -46,8 +46,27 @@
   background-color: rgba(0, 128, 0, 1);
 }
 
-.setTimerHours {
-  width: 90vw;
+.setTimerValues {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.inputTimerSet {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.inputTimerSet h4 {
+  width: 50px;
+  letter-spacing: 0.4rem;
+  font-size: 2rem;
+  font-weight: 400;
+  text-align: right;
+  font-family: "Jersey 25", sans-serif;
 }
 
 .stopBtn {
