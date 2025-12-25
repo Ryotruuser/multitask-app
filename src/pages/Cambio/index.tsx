@@ -3,6 +3,18 @@ import { MainTemplate } from "../../components/MainTemplate";
 import "./styles.css";
 
 export function Cambio() {
+  function getData() {
+    fetch(
+      "https://v6.exchangerate-api.com/v6/dfc82bc225184ad56a2217ed/latest/BRL"
+    )
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+      });
+  }
+
+  getData();
+
   return (
     <MainTemplate>
       <div className="container">
@@ -15,7 +27,7 @@ export function Cambio() {
 
             <div className="inputPart">
               <span>R$</span>
-              <input type="text" disabled value={1} />
+              <input className="brlInput" type="number" />
             </div>
           </div>
           <ArrowRightLeft className="middleArrow" />
@@ -27,7 +39,7 @@ export function Cambio() {
 
             <div className="inputPart">
               <span>$</span>
-              <input type="text" disabled value={0.19} />
+              <input type="number" className="usdInput" />
             </div>
           </div>
         </section>

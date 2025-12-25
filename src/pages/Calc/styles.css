@@ -21,6 +21,11 @@
   letter-spacing: 0.3rem;
 }
 
+.brlInput,
+.usdInput {
+  appearance: textfield;
+}
+
 .numbers {
   display: flex;
   flex-direction: column;
