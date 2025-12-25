@@ -8,9 +8,7 @@ export function Calc() {
   const [pressed, setPressed] = useState<boolean>();
 
   function handleBtnValues(e: React.MouseEvent<HTMLButtonElement>) {
-    console.log(e.currentTarget.value);
     const btnValue = e.currentTarget.value;
-    console.log(value);
     setPressed(true);
     setValue((prevValue) => {
       if (!prevValue) return prevValue;
@@ -25,12 +23,16 @@ export function Calc() {
     setValue([String(result)]);
   }
 
+  function handleClear() {
+    setValue([]);
+  }
+
   return (
     <MainTemplate>
       <div className="container">
         <input
           disabled
-          value={pressed ? value.join("") : "0"}
+          value={pressed && value.length ? value.join("") : "0"}
           className="displayInput"
         />
         <div className="numbers">
@@ -150,8 +152,8 @@ export function Calc() {
             </button>
             <button
               className="operationButtons"
-              value={"c"}
-              onClick={(e) => handleBtnValues(e)}
+              value={"C"}
+              onClick={handleClear}
             >
               c
             </button>
