@@ -18,7 +18,17 @@ export function Timer() {
     secondsSelected: number;
   }
 
-  const [timer, setTimer] = useState<timer>();
+  const [timer, setTimer] = useState<timer>(() => {
+    const timeInSecondasFromTheStorage = localStorage.getItem("timeInSeconds");
+    return timeInSecondasFromTheStorage
+      ? JSON.parse(timeInSecondasFromTheStorage)
+      : {
+          allTimeInSeconds: 0,
+          actualTimeInSeconds: 0,
+          isPaused: false,
+          isRunning: false,
+        };
+  });
   const [selectedTimer, setSelectedTimer] = useState<selectedTimer>();
 
   function doIhaveTime() {
@@ -56,13 +66,14 @@ export function Timer() {
           isPaused: false,
         };
       });
+
+      return;
     }
 
     const allTimeInSeconds = putAllMyTimeTogether();
     if (!doIhaveTime()) {
       return;
     }
-    console.log(typeof allTimeInSeconds);
     setTimer({
       allTimeInSeconds: allTimeInSeconds,
       actualTimeInSeconds: allTimeInSeconds,
@@ -75,8 +86,6 @@ export function Timer() {
       minutesSelected: 0,
       secondsSelected: 0,
     });
-
-    console.log(timer);
   }
 
   useEffect(() => {
@@ -147,6 +156,14 @@ export function Timer() {
         isPaused: false,
       };
     });
+
+    localStorage.setItem("timeInSeconds", "");
+
+    setSelectedTimer({
+      hoursSelected: 0,
+      minutesSelected: 0,
+      secondsSelected: 0,
+    });
   }
 
   function handlePause() {
@@ -158,9 +175,14 @@ export function Timer() {
         isPaused: true,
       };
     });
-
-    console.log(timer);
   }
+
+  useEffect(() => {
+    if (!timer.isRunning) {
+      return;
+    }
+    localStorage.setItem("timeInSeconds", JSON.stringify(timer));
+  }, [timer.isRunning, timer.actualTimeInSeconds, timer]);
 
   const pauseBtn = {
     backgroundColor: "red",
@@ -209,6 +231,7 @@ export function Timer() {
               className="setTimerHours"
               min={0}
               max={11}
+              defaultValue={0}
               step={1}
               onChange={(e) => {
                 setSelectedTimer({
@@ -232,6 +255,7 @@ export function Timer() {
               min={0}
               max={59}
               step={1}
+              defaultValue={0}
               onChange={(e) => {
                 setSelectedTimer({
                   hoursSelected: selectedTimer?.hoursSelected
@@ -253,6 +277,7 @@ export function Timer() {
               className="setTimerHours"
               min={0}
               max={59}
+              defaultValue={0}
               step={1}
               onChange={(e) => {
                 setSelectedTimer({
