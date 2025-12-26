@@ -18,7 +18,8 @@ export function MainTemplate({ children }: MainTemplateProps) {
       url.includes("Calc") ||
       url.includes("Cambio") ||
       url.includes("Tasks") ||
-      url.includes("Timer")
+      url.includes("Timer") ||
+      url.includes("Weather")
     ) {
       return false;
     } else {
@@ -35,6 +36,8 @@ export function MainTemplate({ children }: MainTemplateProps) {
       return "Tarefas";
     } else if (url.includes("Timer")) {
       return "Temporizador";
+    } else if (url.includes("Weather")) {
+      return "Clima";
     }
   }
 

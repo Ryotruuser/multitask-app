@@ -9,6 +9,7 @@ import cnFlag from "./china.png";
 import euFlag from "./eu.png";
 import jpFlag from "./japan.png";
 import xIcon from "./x.png";
+import weather from "./Weather.png";
 
 export {
   calcIcon,
@@ -22,4 +23,5 @@ export {
   euFlag,
   jpFlag,
   xIcon,
+  weather,
 };

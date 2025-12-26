@@ -1,7 +1,13 @@
 import { Link } from "react-router-dom";
 import { MainTemplate } from "../../components/MainTemplate";
 import styles from "./styles.module.css";
-import { calcIcon, cambioIcon, tasksIcon, timerIcon } from "../../assets";
+import {
+  calcIcon,
+  cambioIcon,
+  tasksIcon,
+  timerIcon,
+  weather,
+} from "../../assets";
 
 export function Home() {
   const pages = [
@@ -24,6 +30,11 @@ export function Home() {
       name: "Temporizador",
       path: "/Timer",
       icon: timerIcon,
+    },
+    {
+      name: "Clima",
+      path: "/Weather",
+      icon: weather,
     },
   ];
 

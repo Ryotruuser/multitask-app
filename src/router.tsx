@@ -4,6 +4,7 @@ import { Calc } from "./pages/Calc";
 import { Tasks } from "./pages/Tasks";
 import { Cambio } from "./pages/Cambio";
 import { Timer } from "./pages/Timer";
+import { Weather } from "./pages/Weather";
 
 const router = createBrowserRouter([
   {
@@ -25,6 +26,10 @@ const router = createBrowserRouter([
   {
     path: "/Timer",
     element: <Timer />,
+  },
+  {
+    path: "/Weather",
+    element: <Weather />,
   },
 ]);
 

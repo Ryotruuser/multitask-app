@@ -2,17 +2,12 @@ import { ArrowRightLeft } from "lucide-react";
 import { MainTemplate } from "../../components/MainTemplate";
 import styles from "./styles.module.css";
 import { brFlag, usFlag, jpFlag, cnFlag, euFlag } from "../../assets";
-import { useRef, useState } from "react";
+import { useState } from "react";
 
 export function Cambio() {
-  interface coinValues {
-    brlValue: number;
-    usdValue: number;
-  }
-
   const [inputBrl, setInputBrl] = useState("");
   const [inputUsd, setInputUsd] = useState("");
-  const [coinValue, setCoinValue] = useState<coinValues>();
+  const [activeInput, setActiveInput] = useState("");
 
   function getData() {
     fetch(
@@ -35,8 +30,6 @@ export function Cambio() {
     if (!/^\d*\.?\d*$/.test(inputUser)) {
       return;
     }
-
-    setInputBrl(inputUser);
   }
 
   function handleInputUsd(e: React.ChangeEvent<HTMLInputElement>) {
@@ -69,7 +62,7 @@ export function Cambio() {
               <input
                 className={styles.brlInput}
                 type="text"
-                value={inputBrl ? inputBrl : coinValue?.brlValue}
+                value={inputBrl}
                 onChange={(e) => {
                   handleInputBrl(e);
                 }}
@@ -88,7 +81,7 @@ export function Cambio() {
               <input
                 type="text"
                 className={styles.usdInput}
-                value={inputUsd ? inputUsd : coinValue?.usdValue}
+                value={inputUsd}
                 onChange={(e) => {
                   handleInputUsd(e);
                 }}
