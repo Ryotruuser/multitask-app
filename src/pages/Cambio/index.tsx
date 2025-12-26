@@ -7,36 +7,51 @@ import { useState } from "react";
 export function Cambio() {
   const [inputBrl, setInputBrl] = useState("");
   const [inputUsd, setInputUsd] = useState("");
-  const [activeInput, setActiveInput] = useState("");
+  const [activeInput, setActiveInput] = useState<"brl" | "usd" | null>(null);
 
-  function getData() {
-    fetch(
-      "https://v6.exchangerate-api.com/v6/dfc82bc225184ad56a2217ed/latest/BRL"
-    )
-      .then((response) => response.json())
-      .then((data) => {
-        console.log(data);
-      });
-  }
+  const apiUrl =
+    "https://economia.awesomeapi.com.br/json/last/USD?token=9ba9f7422b2a0070e031376ee1393c8ef5b766b5b507dc66e299e165685107ad";
 
   function handleInputBrl(e: React.ChangeEvent<HTMLInputElement>) {
+    if (activeInput && activeInput !== "brl") return;
+
     const inputUser = e.target.value;
 
     if (inputUser === "") {
       setInputBrl("");
+      setInputUsd("");
+      setActiveInput(null);
       return;
     }
 
     if (!/^\d*\.?\d*$/.test(inputUser)) {
       return;
+    }
+
+    setActiveInput("brl");
+
+    setInputBrl(inputUser);
+
+    const brlNumber = parseFloat(inputUser);
+    if (!isNaN(brlNumber)) {
+      fetch(apiUrl)
+        .then((response) => response.json())
+        .then((data) => {
+          const usdValue = data.USDBRL.bid;
+          setInputUsd((brlNumber / usdValue).toFixed(2));
+        });
     }
   }
 
   function handleInputUsd(e: React.ChangeEvent<HTMLInputElement>) {
+    if (activeInput && activeInput !== "usd") return;
+
     const inputUser = e.target.value;
 
     if (inputUser === "") {
       setInputUsd("");
+      setInputBrl("");
+      setActiveInput(null);
       return;
     }
 
@@ -44,7 +59,18 @@ export function Cambio() {
       return;
     }
 
+    setActiveInput("usd");
     setInputUsd(inputUser);
+
+    const usdNumber = parseFloat(inputUser);
+    if (!isNaN(usdNumber)) {
+      fetch(apiUrl)
+        .then((response) => response.json())
+        .then((data) => {
+          const usdValue = data.USDBRL.bid;
+          setInputBrl((usdNumber * usdValue).toFixed(2));
+        });
+    }
   }
 
   return (
@@ -63,6 +89,7 @@ export function Cambio() {
                 className={styles.brlInput}
                 type="text"
                 value={inputBrl}
+                onFocus={() => setActiveInput("brl")}
                 onChange={(e) => {
                   handleInputBrl(e);
                 }}
@@ -81,6 +108,7 @@ export function Cambio() {
               <input
                 type="text"
                 className={styles.usdInput}
+                onFocus={() => setActiveInput("usd")}
                 value={inputUsd}
                 onChange={(e) => {
                   handleInputUsd(e);
