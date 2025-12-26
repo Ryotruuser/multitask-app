@@ -1,8 +1,19 @@
 import { ArrowRightLeft } from "lucide-react";
 import { MainTemplate } from "../../components/MainTemplate";
-import "./styles.css";
+import styles from "./styles.module.css";
+import { brFlag, usFlag, jpFlag, cnFlag, euFlag } from "../../assets";
+import { useRef, useState } from "react";
 
 export function Cambio() {
+  interface coinValues {
+    brlValue: number;
+    usdValue: number;
+  }
+
+  const [inputBrl, setInputBrl] = useState("");
+  const [inputUsd, setInputUsd] = useState("");
+  const [coinValue, setCoinValue] = useState<coinValues>();
+
   function getData() {
     fetch(
       "https://v6.exchangerate-api.com/v6/dfc82bc225184ad56a2217ed/latest/BRL"
@@ -13,84 +24,126 @@ export function Cambio() {
       });
   }
 
-  getData();
+  function handleInputBrl(e: React.ChangeEvent<HTMLInputElement>) {
+    const inputUser = e.target.value;
+
+    if (inputUser === "") {
+      setInputBrl("");
+      return;
+    }
+
+    if (!/^\d*\.?\d*$/.test(inputUser)) {
+      return;
+    }
+
+    setInputBrl(inputUser);
+  }
+
+  function handleInputUsd(e: React.ChangeEvent<HTMLInputElement>) {
+    const inputUser = e.target.value;
+
+    if (inputUser === "") {
+      setInputUsd("");
+      return;
+    }
+
+    if (!/^\d*\.?\d*$/.test(inputUser)) {
+      return;
+    }
+
+    setInputUsd(inputUser);
+  }
 
   return (
     <MainTemplate>
-      <div className="container">
-        <section className="coinChange inputSection">
-          <div className="realCambio">
-            <div className="cambioText">
-              <img src="./brImage.png" alt="bandeira brasil" />
+      <div className={styles.container}>
+        <section className={styles.coinChange || styles.inputSection}>
+          <div className={styles.realCambio}>
+            <div className={styles.cambioText}>
+              <img src={brFlag} alt="bandeira brasil" />
               <h4>Real</h4>
             </div>
 
-            <div className="inputPart">
+            <div className={styles.inputPart}>
               <span>R$</span>
-              <input className="brlInput" type="number" />
+              <input
+                className={styles.brlInput}
+                type="text"
+                value={inputBrl ? inputBrl : coinValue?.brlValue}
+                onChange={(e) => {
+                  handleInputBrl(e);
+                }}
+              />
             </div>
           </div>
-          <ArrowRightLeft className="middleArrow" />
-          <div className="dolarCambio">
-            <div className="cambioText">
-              <img src="./UsaImage.png" alt="bandeira eua" />
+          <ArrowRightLeft className={styles.middleArrow} />
+          <div className={styles.dolarCambio}>
+            <div className={styles.cambioText}>
+              <img src={usFlag} alt="bandeira eua" />
               <h4>Dollar</h4>
             </div>
 
-            <div className="inputPart">
+            <div className={styles.inputPart}>
               <span>$</span>
-              <input type="number" className="usdInput" />
+              <input
+                type="text"
+                className={styles.usdInput}
+                value={inputUsd ? inputUsd : coinValue?.usdValue}
+                onChange={(e) => {
+                  handleInputUsd(e);
+                }}
+              />
             </div>
           </div>
         </section>
 
-        <section className="coinChange">
+        <section className={styles.coinChange}>
           <img
-            src="./eu.png"
+            src={euFlag}
             alt="bandeira da europa"
-            className="countryFlag"
+            className={styles.countryFlag}
           />
-          <div className="coinInfos">
-            <div className="coinText">
+          <div className={styles.coinInfos}>
+            <div className={styles.coinText}>
               <h3>Euro</h3>
               <p>EUR</p>
             </div>
-            <h2 className="currencyCambio">
+            <h2 className={styles.currencyCambio}>
               <span>€</span>0,1732
             </h2>
           </div>
         </section>
 
-        <section className="coinChange">
+        <section className={styles.coinChange}>
           <img
-            src="./japan.png"
-            alt="bandeira do japao"
-            className="countryFlag"
+            src={jpFlag}
+            alt="bandeira da japao"
+            className={styles.countryFlag}
           />
-          <div className="coinInfos">
-            <div className="coinText">
-              <h3>IENE</h3>
-              <p>JPY</p>
+          <div className={styles.coinInfos}>
+            <div className={styles.coinText}>
+              <h3>Euro</h3>
+              <p>EUR</p>
             </div>
-            <h2 className="currencyCambio">
-              <span>JP¥</span>29,31
+            <h2 className={styles.currencyCambio}>
+              <span>€</span>0,1732
             </h2>
           </div>
         </section>
 
-        <section className="coinChange">
+        <section className={styles.coinChange}>
           <img
-            src="./china.png"
+            src={cnFlag}
             alt="bandeira da china"
-            className="countryFlag"
+            className={styles.countryFlag}
           />
-          <div className="coinInfos">
-            <div className="coinText">
-              <h3>Renminbi</h3>
-              <p>CNY</p>
+          <div className={styles.coinInfos}>
+            <div className={styles.coinText}>
+              <h3>Euro</h3>
+              <p>EUR</p>
             </div>
-            <h2 className="currencyCambio">
-              <span>¥</span>1,356
+            <h2 className={styles.currencyCambio}>
+              <span>€</span>0,1732
             </h2>
           </div>
         </section>

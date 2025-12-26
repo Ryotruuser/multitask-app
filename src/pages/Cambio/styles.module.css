@@ -1,6 +1,11 @@
 .container {
   max-width: 90%;
   font-family: "KoHo", sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
 }
 
 .coinChange {
@@ -35,6 +40,11 @@
   flex-direction: column;
   align-items: center;
   gap: 0.5rem;
+}
+
+.brlInput,
+.usdInput {
+  appearance: textfield;
 }
 
 .cambioText {

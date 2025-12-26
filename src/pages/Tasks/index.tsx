@@ -2,6 +2,7 @@ import { FilePenLine, Trash } from "lucide-react";
 import { MainTemplate } from "../../components/MainTemplate";
 import styles from "./styles.module.css";
 import { useEffect, useRef, useState } from "react";
+import { addTaskIcon, xIcon } from "../../assets";
 
 export function Tasks() {
   interface tasks {
@@ -142,11 +143,11 @@ export function Tasks() {
               ref={inputRef}
             />
             <span className={styles.xOfTheQuestion}>
-              <img onClick={clearInput} src="./x.png" alt="icone de um x" />
+              <img onClick={clearInput} src={xIcon} alt="icone de um x" />
             </span>
           </div>
           <img
-            src="./AddTask.png"
+            src={addTaskIcon}
             alt="icone de adicionar tarefa"
             className={styles.btnAddTask}
             onClick={addTask}
