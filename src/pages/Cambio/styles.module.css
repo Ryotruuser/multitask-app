@@ -16,61 +16,54 @@
   border-radius: 22px;
   display: flex;
   align-items: center;
+  flex-direction: column;
   gap: 0.5rem;
   transition: ease-in-out 0.3s;
-}
-
-.coinChange:hover {
-  background-color: rgba(43, 98, 121, 1);
-}
-
-.inputSection {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
 }
 
 .inputSection:hover {
   background-color: rgba(43, 98, 121, 0.78);
 }
 
-.realCambio,
-.dolarCambio {
+.cambioPart {
   display: flex;
-  flex-direction: column;
   align-items: center;
   gap: 0.5rem;
+  height: 70%;
+  transition: transform 0.35s ease;
 }
 
-.brlInput,
-.usdInput {
-  appearance: textfield;
-}
-
-.cambioText {
+.cambioSymbol {
   display: flex;
   align-items: center;
   justify-content: center;
   color: #fff;
   gap: 0.5rem;
+  overflow: hidden;
+  position: relative;
+  width: 50px;
+  height: 40px;
+  border-radius: 8px;
+  transition:
+    transform 0.35s ease,
+    opacity 0.25s ease;
 }
 
-.cambioText h4 {
-  font-size: 2rem;
-}
-
-.cambioText img {
-  width: 45px;
-  height: 45px;
+.cambioSymbol img {
+  width: 60px;
+  height: 60px;
+  position: absolute;
 }
 
 .middleArrow {
   width: 100px;
   height: 50px;
 }
-
 .inputPart {
   position: relative;
+  display: flex;
+  align-items: center;
+  transition: all 0.35s ease;
 }
 
 .inputPart span {
@@ -78,11 +71,12 @@
   font-size: 1.8rem;
   color: #fff;
   font-weight: 800;
+  transition: all 0.35s ease;
 }
 
 .inputPart input {
-  width: 110px;
-  height: 30px;
+  width: 200px;
+  height: 40px;
   font-size: 1.6rem;
   text-align: right;
   background-color: rgb(8, 9, 8, 0.4);
@@ -93,6 +87,7 @@
   font-weight: 600;
   padding-right: 0.5rem;
   cursor: pointer;
+  transition: all 0.35s ease;
 }
 
 .coinInfos {
@@ -133,4 +128,59 @@
   font-size: 24px;
   color: #1dc861;
   font-weight: 800;
+}
+
+.btnChange {
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 1rem;
+  border-radius: 8px;
+  font-family: "KoHo", sans-serif;
+  font-weight: 800;
+  background-color: #85bb65;
+  color: #fff;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
+  transition: ease-in-out 0.3s;
+}
+
+.btnChange:hover {
+  background-color: rgba(133, 187, 101, 0.78);
+}
+
+.arrowCurrencyChange {
+  width: 50px;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.arrowCurrencyChange:hover {
+  color: #85bb65;
+}
+
+.reverseDiv {
+  display: flex;
+  flex-direction: row-reverse;
+  transform: translateX(0);
+}
+
+.reverseInput input {
+  text-align: left;
+  padding-left: 0.5rem;
+}
+
+.reverseInput span {
+  right: 0;
+  opacity: 0.85;
+}
+
+.cambioPart:not(.reverseDiv) {
+  transform: translateX(0);
+}
+
+.reverseDiv .cambioSymbol {
+  transform: scale(0.9);
+  opacity: 0.85;
 }
