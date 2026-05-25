@@ -1,7 +1,7 @@
 import { ArrowRightLeft } from "lucide-react";
 import { MainTemplate } from "../../components/MainTemplate";
 import styles from "./styles.module.css";
-import { brFlag, usFlag, jpFlag, cnFlag, euFlag } from "../../assets";
+import { brFlag, usFlag } from "../../assets";
 import { useState } from "react";
 
 export function Cambio() {
@@ -9,6 +9,8 @@ export function Cambio() {
   // const apiUrl =
   //   "https://economia.awesomeapi.com.br/json/last/USD?token=9ba9f7422b2a0070e031376ee1393c8ef5b766b5b507dc66e299e165685107ad";
 
+  const brazilianFlag = brFlag;
+  const usaFlag = usFlag;
   function handleChangeActualCurrency() {
     if (currency === "brl") {
       setCurrency("usd");
@@ -27,8 +29,8 @@ export function Cambio() {
           >
             <div className={styles.cambioSymbol}>
               <img
-                src={currency === "brl" ? brFlag : usFlag}
-                alt="bandeira brasil"
+                src={`${currency === "brl" ? brazilianFlag : usaFlag}`}
+                alt="bandeira do brasil"
               />
             </div>
 
