@@ -6,6 +6,7 @@ import { useState } from "react";
 
 export function Cambio() {
   const [currency, setCurrency] = useState<"brl" | "usd">("brl");
+  const [value, setValue] = useState(0);
   // const apiUrl =
   //   "https://economia.awesomeapi.com.br/json/last/USD?token=9ba9f7422b2a0070e031376ee1393c8ef5b766b5b507dc66e299e165685107ad";
 
@@ -18,6 +19,14 @@ export function Cambio() {
     }
 
     setCurrency("brl");
+  }
+
+  function handleValue(e) {
+    setValue(e.target.value);
+  }
+
+  function handleCurrency() {
+    console.log(`Valor: ${value} \n tipo de moeda: ${currency}`);
   }
 
   return (
@@ -38,9 +47,11 @@ export function Cambio() {
               className={` ${styles.inputPart} ${currency === "usd" ? styles.reverseInput : ""}`}
             >
               <span>{currency === "brl" ? "R$" : "$"}</span>
-              <input type="text" />
+              <input type="text" onChange={handleValue} value={value} />
             </div>
-            <button className={styles.btnChange}>Converter</button>
+            <button onClick={handleCurrency} className={styles.btnChange}>
+              Converter
+            </button>
           </div>
           <ArrowRightLeft
             className={styles.arrowCurrencyChange}
